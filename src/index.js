@@ -1,3 +1,19 @@
+function example(id) {
+    if (id === 0) {
+        document.getElementById("script").value = "말하기 안녕하세요, 한글스크립트를 제작중인 PMH Studio / PMH입니다!\n말하기 오늘부터 제가, 한국어로, 한글로 된 프로그래밍 언어를 만들어 볼껀데요\n말하기 일단 프로토타입인 이 한글스크립트가 잘되서 다행이네요\n끝내기\n"
+    } else if (id === 1) {
+        document.getElementById("script").value = "* 이것은 if문을 우리말로 번역한것입니다.\n\n* \"만약 <숫자> 보다 <숫자> 가 <비교연산자>하다면 <줄번호> 아니면 <줄번호>\"\n\n* 잘 됬으면 좋겠네요\n\n만약 5 보다 2 가 크다면 8 아니면 10\n말하기 5보다 2가 큽니다\n뛰어넘기 1\n말하기 5보다 2가 작습니다\n끝내기\n"
+    } else if (id === 2) {
+        document.getElementById("script").value = "* 변수를 만들고, 불러오는 기능을 만들었습니다\n\n* 변수는 '정하기'로 만들고, '말하기' 와 '만약 ~'에서 쓸수있습니다\n\n정하기 x 10\n정하기 y 50\n만약 x 가 y 보다 크다면 8 아니면 13\n말하기 변수, x\n말하기 (이)가\n말하기 변수, y\n말하기 보다 더 큽니다\n뛰어넘기 4\n말하기 변수, y\n말하기 (이)가\n말하기 변수, x\n말하기 보다 더 큽니다\n끝내기\n"
+    } else if (id === 3) {
+        document.getElementById("script").value = "* 변수를 연산하여 대입하기를 우리말로 번역한 것입니다\n* 쉽기떄문에 봐도 바로 알수있습니다\n\n정하기 x 10\n\nx 에 1 더하기\n말하기 변수, x\n\nx 에 2 빼기\n말하기 변수, x\n\nx 에 3 곱하기\n말하기 변수, x\n\nx 에 3 나누기\n말하기 변수, x\n끝내기\n"
+    } else if (id === 4) {
+        document.getElementById("script").value = "ㅈ 이것은 비교연산문.kost를 '줄임말' 방식을 사용해 구현한 것입니다\n\nㅈ ㅈ은 주석, ㅁ는 말하기, ㄲ는 끝내기, ㅎ는 만약, ㄸ는 뛰어넘기를 뜻합니다\n\n\n\nㅎ 5 보다 2 가 크다면 8 아니면 10\nㅁ 5보다 2가 큽니다\nㄸ 1\nㅁ 5보다 2가 작습니다\nㄲ\n"
+    } else if (id === 5) {
+        document.getElementById("script").value = ""
+    }
+}
+
 function kost() {
     let $한글스크립트 = document.getElementById("script").value.split('\n')
     let $메모리버퍼 = {
@@ -16,18 +32,18 @@ function kost() {
         if (!$메모리버퍼[$한글한글[0]]) {
         if ($한글한글[0] === '말하기' || $한글한글[0] === 'ㅁ') {
             if (!$한글한글.slice(1).join(' ')) {
-            document.write('\n')
+            document.write('<br />')
             } else if ($한글스크립트[$계수기].includes('변수,')) {
-            document.write($메모리버퍼[$한글한글[2]])
+            document.write($메모리버퍼[$한글한글[2]] + '<br />')
             } else {
-            document.write($한글한글.slice(1).join(' '))
+            document.write($한글한글.slice(1).join(' ') + '<br />')
             }
             $계수기++
         } else if ($한글한글[0] === '*' || $한글한글[0] === 'ㅈ') {
             $계수기++
         } else if ($한글한글[0] === '끝내기' || $한글한글[0] === 'ㄲ') {
             $계수기 = ($한글스크립트.length)
-            document.write('\n"' + $파일이름 + '.kost"이(가) 성공적으로 종료됨\n')
+            document.write('<br />성공적으로 종료됨, <a href="./index.html">돌아가기</a><br />')
         } else if ($한글한글[0] === '만약' || $한글한글[0] === 'ㅎ') {
             let $비교되는자 = $한글한글[1]
             let $비교하는자 = $한글한글[3]
