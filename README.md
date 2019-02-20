@@ -12,7 +12,7 @@
 kost <파일이름>
 ```
 을 적습니다
-1. 실행결과가 출력됩니다
+4. 실행결과가 출력됩니다
 
 
 # 작성방법
@@ -35,3 +35,5 @@ kost <파일이름>
 ## * : 주석
 *는 한글스크립트에서 주석을 의미합니다
 > * <뒤에오는 글자는 무시합니다>
+
+### 나머지 문법들은 [/WorkStation](https://github.com/PMHStudio/KoreanScript/tree/master/WorkStation) 폴터를 참고하십시오
