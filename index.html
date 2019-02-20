@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>한글스크립트 | Korean Script</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+        * {
+            font-family: 'Noto Sans Kr';
+        }
+        textarea {
+            width: 350px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            padding: 12px 20px 12px 40px;
+            }
+
+    </style>
+</head>
+<body>
+    <h1>한글스크립트</h1>
+    <p>한글스크립트의 웹버전입니다. 웹버전에는 내장변수가 없으니 유의 바랍니다</p>
+    <textarea id="script" placeholder="여길눌러 한글스크립트를 작성하세요"></textarea><br />
+    <button type="button" onclick="kost()">한글스크립트 실행</button>
+    <a href="mailto://pmhstudio.pmh@gmail.com/">관리자에게 이메일</a> | <a href="http://kost.pmhstudio.kro.kr/">소스코드</a>
+
+    <script type="text/javascript" src="./src/index.js"></script>
+</body>
+</html>
