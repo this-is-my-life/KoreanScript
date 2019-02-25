@@ -12,9 +12,9 @@ if not exist ./node_modules (
     echo Downloading Modules...
     npm install
 )
-echo * ì´ê¸€ì´ ë³´ì¸ë‹¤ë©´ ì„¤ì¹˜ìž‘ì—…ì´ ëë‚œê²ƒìž…ë‹ˆë‹¤! >./WorkStation/input.kost
-echo * ì´ì œ ì•„ëž˜ì— í•œê¸€ìŠ¤í¬ë¦½íŠ¸ë¥¼ ìž‘ì„±, ì €ìž¥í•˜ì‹ í›„ >>./WorkStation/input.kost
-echo * ì´ ì°½ì„ ë‹«ìœ¼ì‹œë©´ ë©ë‹ˆë‹¤! >>./WorkStation/input.kost
+echo * ÀÌ±ÛÀÌ º¸ÀÎ´Ù¸é ¼³Ä¡ÀÛ¾÷ÀÌ ³¡³­°ÍÀÔ´Ï´Ù! >./WorkStation/input.kost
+echo * ÀÌÁ¦ ¾Æ·¡¿¡ ÇÑ±Û½ºÅ©¸³Æ®¸¦ ÀÛ¼º, ÀúÀåÇÏ½ÅÈÄ >>./WorkStation/input.kost
+echo * ÀÌ Ã¢À» ´ÝÀ¸½Ã¸é µË´Ï´Ù! >>./WorkStation/input.kost
 start /wait notepad ./WorkStation/input.kost
 node kost.js input
 start ./output.txt
