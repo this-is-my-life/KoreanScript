@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>한글스크립트 편집기 (실험판) Copyright ⓒ 2019. PMH Studio. MIT Licensed.</title>
+    <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" id="in-background">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light row">
+            <div id="in-group-toolbar" class="btn-toolbar col-sm-3">
+                <div class="btn-group" role="group" aria-label="tools">
+                    <button type="button" class="btn btn-primary" id="in-clipboardCopy"><i class="far fa-copy"></i></button>
+                        <button type="button" class="btn btn-secondary" id="in-clipboardPaste"><i class="fas fa-paste"></i></button>
+                    <button type="button" class="btn btn-danger" id="in-reset" onclick="reset()"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+            <input type="text" class="form-control col-sm-7" placeholder="파일명을 적어주세요">
+            <div id="in-group-toolbar" class="btn-toolbar col-sm-2">
+                <div class="btn-group" role="group" aria-label="tools">
+                    <button type="button" class="btn btn-secondary" id="in-study"><i class="fas fa-graduation-cap"></i></button>
+                    <button type="button" class="btn btn-success" id="in-run" onclick="run()"><i class="fas fa-play"></i></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <textarea class="form-control" id="in-scriptTextbox" placeholder="여기를 눌러 한글스크립트 작성을 시작하세요
+
+Tip* 한글스크립트는 무조건 끝낼때 끝내기를 사용해야 제대로 작동합니다!"></textarea>
+    <textarea class="form-control" id="in-debugTextbox" placeholder="연두색 실행버튼을 눌러주세요" disabled></textarea>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-image: url('./img/in-background.jpg');
+    background-size: cover;
+}
+#in-startJumbotron {
+    background-color: #00000000;
+}
+#in-startTitle {
+    font-family: 'Nanum Brush Script', serif;
+}
+#in-startButton {
+    color: white;
+}
