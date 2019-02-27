@@ -1,23 +1,28 @@
 {
   "name": "koreanscript",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "코딩? 한국어로 시작하자! \"한글스크립트\"  @PMHStudio",
   "main": "kost.js",
   "scripts": {
-    "test": "node kost.js"
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PMHStudio/KoreanScript.git"
   },
   "author": "",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PMHStudio/KoreanScript/issues"
+  },
+  "homepage": "https://github.com/PMHStudio/KoreanScript#readme",
   "devDependencies": {
-    "eslint": "^5.14.0",
+    "electron": "^4.0.6",
+    "eslint": "^5.14.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0"
-  },
-  "dependencies": {
-    "clear": "^0.1.0",
-    "jfile": "^1.1.12"
   }
 }
