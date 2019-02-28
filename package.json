@@ -4,7 +4,12 @@
   "description": "코딩? 한국어로 시작하자! \"한글스크립트\"  @PMHStudio",
   "main": "kost.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-mac64": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.2\" --overwrite --platform=darwin --arch=x64 --icon=./src/img/kostImage.icns --prune=true --out=release-builds",
+    "package-win32": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --overwrite --asar=true --platform=win32 --arch=ia32 --icon=./src/img/kostImage.ico --prune=true --out=release-builds --version-string.CompanyName=\"PMHStudio\" --version-string.FileDescription=\"한글스크립트 실험판\" --version-string.ProductName=\"Korean Script Alpha\"",    
+    "package-win64": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --overwrite --asar=true --platform=win32 --arch=x64 --icon=./src/img/kostImage.ico --prune=true --out=release-builds --version-string.CompanyName=\"PMHStudio\" --version-string.FileDescription=\"한글스크립트 실험판\" --version-string.ProductName=\"Korean Script Alpha\"",    
+    "package-linux64": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.2\" --overwrite --asar=true --platform=linux --arch=x64 --icon=./src/img/kostImage.png --prune=true --out=release-builds",
+    "package-linux32": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.2\" --overwrite --asar=true --platform=linux --arch=ia32 --icon=./src/img/kostImage.png --prune=true --out=release-builds"
   },
   "repository": {
     "type": "git",
@@ -18,6 +23,7 @@
   "homepage": "https://github.com/PMHStudio/KoreanScript#readme",
   "devDependencies": {
     "electron": "^4.0.6",
+    "electron-packager": "^13.1.0",
     "eslint": "^5.14.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
