@@ -5,11 +5,12 @@
   "main": "kost.js",
   "scripts": {
     "start": "electron .",
-    "package-mac64": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.3\" --overwrite --platform=darwin --arch=x64 --icon=./src/img/kostImage.icns --prune=true --out=release-builds",
+    "package-mac64": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.4\" --overwrite --platform=darwin --arch=x64 --icon=./src/img/kostImage.icns --prune=true --out=release-builds",
     "package-win32": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --overwrite --asar=true --platform=win32 --arch=ia32 --icon=./src/img/kostImage.ico --prune=true --out=release-builds --version-string.CompanyName=\"PMHStudio\" --version-string.FileDescription=\"한글스크립트 실험판\" --version-string.ProductName=\"Korean Script Alpha\"",
     "package-win64": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --overwrite --asar=true --platform=win32 --arch=x64 --icon=./src/img/kostImage.ico --prune=true --out=release-builds --version-string.CompanyName=\"PMHStudio\" --version-string.FileDescription=\"한글스크립트 실험판\" --version-string.ProductName=\"Korean Script Alpha\"",
-    "package-linux64": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.3\" --overwrite --asar=true --platform=linux --arch=x64 --icon=./src/img/kostImage.png --prune=true --out=release-builds",
-    "package-linux32": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.3\" --overwrite --asar=true --platform=linux --arch=ia32 --icon=./src/img/kostImage.png --prune=true --out=release-builds"
+    "package-linux64": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.4\" --overwrite --asar=true --platform=linux --arch=x64 --icon=./src/img/kostImage.png --prune=true --out=release-builds",
+    "package-linux32": "electron-packager ./ 한글스크립트 --app-copyright=\"Copyright (c) 2019. PMH Studio.\" --app-version=\"alpha1.0.4\" --overwrite --asar=true --platform=linux --arch=ia32 --icon=./src/img/kostImage.png --prune=true --out=release-builds",
+    "build": "npm run package-mac64 && npm run package-win32 && npm run package-win64 && npm run package-linux64 && npm run package-linux32"
   },
   "repository": {
     "type": "git",
@@ -21,8 +22,13 @@
     "url": "https://github.com/PMHStudio/KoreanScript/issues"
   },
   "homepage": "https://github.com/PMHStudio/KoreanScript#readme",
+  "dependencies": {
+    "bootstrap": "^4.1.4",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.14.4"
+  },
   "devDependencies": {
-    "bootstrap": "^4.1.3",
+    "bootstrap": "^4.1.4",
     "electron": "^4.0.6",
     "electron-packager": "^13.1.0",
     "eslint": "^5.14.1",
@@ -31,7 +37,7 @@
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "popper.js": "^1.14.4"
   }
 }

@@ -20,9 +20,16 @@ function createStartWindow () {
   startWindow.on('closed', () => {
     startWindow = null
   })
+  globalShortcut.register('Return', () => {
+    if (startWindow) {
+      createMainWindow()
+      startWindow.close()
+    }
+  })
 }
 
 function createMainWindow () {
+
   mainWindow = new electron.BrowserWindow({
     minWidth: 800,
     minHeight: 600,
@@ -33,6 +40,7 @@ function createMainWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+  globalShortcut.unregister('Return')
 }
 
 function createGithubWindow () {
@@ -86,13 +94,6 @@ app.on('ready', () => {
     } else if (mainWindow) {
       createStartWindow()
       mainWindow.close()
-    }
-  })
-
-  globalShortcut.register('Return', () => {
-    if (startWindow) {
-      createMainWindow()
-      startWindow.close()
     }
   })
 
