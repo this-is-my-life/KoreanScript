@@ -1,19 +1,59 @@
 /* eslint-disable no-unused-vars */
-const { ipcRenderer, clipboard } = require('electron')
-document.getElementById('in-study').addEventListener('click', () => {
-  ipcRenderer.send('ipc-study')
+const fs = require('fs')
+const { dialog } = require('electron').remote
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
 })
+
+function example (id) {
+  if (id === 0) {
+    document.getElementById('in-scriptTextbox').value = '말하기 안녕하세요, 한글스크립트를 제작중인 PMH Studio / PMH입니다!\n말하기 오늘부터 제가, 한국어로, 한글로 된 프로그래밍 언어를 만들어 볼껀데요\n말하기 일단 프로토타입인 이 한글스크립트가 잘되서 다행이네요\n끝내기\n'
+  } else if (id === 1) {
+    document.getElementById('in-scriptTextbox').value = '* 이것은 if문을 우리말로 번역한것입니다.\n\n* "만약 <숫자> 보다 <숫자> 가 <비교연산자>하다면 <줄번호> 아니면 <줄번호>"\n\n* 잘 됬으면 좋겠네요\n\n만약 5 보다 2 가 크다면 8 아니면 10\n말하기 5보다 2가 큽니다\n뛰어넘기 1\n말하기 5보다 2가 작습니다\n끝내기\n'
+  } else if (id === 2) {
+    document.getElementById('in-scriptTextbox').value = "* 변수를 만들고, 불러오는 기능을 만들었습니다\n\n* 변수는 '정하기'로 만들고, '말하기' 와 '만약 ~'에서 쓸수있습니다\n\n정하기 x 10\n정하기 y 50\n만약 x 가 y 보다 크다면 8 아니면 13\n말하기 변수, x\n말하기 (이)가\n말하기 변수, y\n말하기 보다 더 큽니다\n뛰어넘기 4\n말하기 변수, y\n말하기 (이)가\n말하기 변수, x\n말하기 보다 더 큽니다\n끝내기\n"
+  } else if (id === 3) {
+    document.getElementById('in-scriptTextbox').value = '* 변수를 연산하여 대입하기를 우리말로 번역한 것입니다\n* 쉽기떄문에 봐도 바로 알수있습니다\n\n정하기 x 10\n\nx 에 1 더하기\n말하기 변수, x\n\nx 에 2 빼기\n말하기 변수, x\n\nx 에 3 곱하기\n말하기 변수, x\n\nx 에 3 나누기\n말하기 변수, x\n끝내기\n'
+  } else if (id === 4) {
+    document.getElementById('in-scriptTextbox').value = "ㅈ 이것은 비교연산문.kost를 '줄임말' 방식을 사용해 구현한 것입니다\n\nㅈ ㅈ은 주석, ㅁ는 말하기, ㄲ는 끝내기, ㅎ는 만약, ㄸ는 뛰어넘기를 뜻합니다\n\n\n\nㅎ 5 보다 2 가 크다면 8 아니면 10\nㅁ 5보다 2가 큽니다\nㄸ 1\nㅁ 5보다 2가 작습니다\nㄲ\n"
+  }
+}
+
+function $export () {
+  dialog.showSaveDialog({
+    defaultPath: document.getElementById('in-fileName').value || '이름없음',
+    buttonLabel: '한글스크립트 파일 저장하기',
+    filters: [{ name: '한글스크립트 파일', extensions: ['kost'] }, { name: '일반 텍스트 파일', extensions: ['txt'] }]
+  }, (filename) => {
+    if (filename) {
+      fs.writeFile(filename, document.getElementById('in-scriptTextbox').value, (err) => {
+        if (err) { console.log(err) }
+      })
+    }
+  })
+}
+
+function $import () {
+  dialog.showOpenDialog({
+    buttonLabel: '한글스크립트 파일 불러오기',
+    filters: [{ name: '한글스크립트 파일', extensions: ['kost'] }, { name: '일반 텍스트 파일', extensions: ['txt'] }],
+    openFile: true,
+    openDirectory: false,
+    multiSelections: false
+  }, (filedir) => {
+    if (filedir) {
+      document.getElementById('in-fileName').value = filedir[0].split('\\')[(filedir[0].split('\\').length) - 1].split('.')[0]
+      fs.readFile(filedir[0], 'utf8', (err, data) => {
+        if (err) { console.log(err) } else {
+          document.getElementById('in-scriptTextbox').value = data
+        }
+      })
+    }
+  })
+}
 
 function reset () {
   document.getElementById('in-scriptTextbox').value = ''
-}
-
-function clipboardCopy () {
-  clipboard.writeText(document.getElementById('in-scriptTextbox').value)
-}
-
-function clipboardPaste () {
-  document.getElementById('in-scriptTextbot').value = clipboard.readText
 }
 
 function run () {

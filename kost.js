@@ -1,10 +1,12 @@
 const electron = require('electron')
 const app = electron.app
 const ipcMain = electron.ipcMain
+const globalShortcut = electron.globalShortcut
 const path = require('path')
 let startWindow
 let mainWindow
 let githubWindow
+let oldKostWindow
 
 function createStartWindow () {
   startWindow = new electron.BrowserWindow({
@@ -20,7 +22,85 @@ function createStartWindow () {
   })
 }
 
+function createMainWindow () {
+  mainWindow = new electron.BrowserWindow({
+    minWidth: 800,
+    minHeight: 600,
+    icon: path.join(__dirname, './src/img/kostImage.ico')
+  })
+  mainWindow.setMenu(null)
+  mainWindow.loadFile('./src/main.html')
+  mainWindow.on('closed', () => {
+    mainWindow = null
+  })
+}
+
+function createGithubWindow () {
+  githubWindow = new electron.BrowserWindow({
+    minWidth: 800,
+    minHeight: 600,
+    icon: path.join(__dirname, './src/img/kostImage.ico')
+  })
+  githubWindow.setMenu(null)
+  githubWindow.loadURL('https://github.com/PMHStudio/KoreanScript')
+  githubWindow.on('closed', () => {
+    githubWindow = null
+  })
+}
+
+function createOldKostWindow () {
+  oldKostWindow = new electron.BrowserWindow({
+    minWidth: 800,
+    minHeight: 600,
+    icon: path.join(__dirname, './src/img/kostImage.ico')
+  })
+  oldKostWindow.setMenu(null)
+  oldKostWindow.loadURL('http://kost.pmhstudio.kro.kr/')
+  oldKostWindow.on('closed', () => {
+    oldKostWindow = null
+  })
+}
+
 app.on('ready', () => {
+  globalShortcut.register('CommandOrControl+Shift+P', () => {
+    if (startWindow) {
+      startWindow.toggleDevTools()
+    } else if (mainWindow) {
+      mainWindow.toggleDevTools()
+    }
+  })
+
+  globalShortcut.register('CommandOrControl+Alt+Shift+P', () => {
+    if (!oldKostWindow) {
+      createOldKostWindow()
+    }
+  })
+
+  globalShortcut.register('Esc', () => {
+    if (githubWindow) {
+      githubWindow.close()
+    } else if (oldKostWindow) {
+      oldKostWindow.close()
+    } else if (startWindow) {
+      app.quit()
+    } else if (mainWindow) {
+      createStartWindow()
+      mainWindow.close()
+    }
+  })
+
+  globalShortcut.register('Return', () => {
+    if (startWindow) {
+      createMainWindow()
+      startWindow.close()
+    }
+  })
+
+  globalShortcut.register('F1', () => {
+    if (!githubWindow) {
+      createGithubWindow()
+    }
+  })
   createStartWindow()
 })
 
@@ -37,24 +117,10 @@ app.on('window-all-closed', () => {
 })
 
 ipcMain.on('ipc-startButton', () => {
-  mainWindow = new electron.BrowserWindow({
-    icon: path.join(__dirname, './src/img/kostImage.ico')
-  })
-  mainWindow.setMenu(null)
-  mainWindow.loadFile('./src/main.html')
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
+  createMainWindow()
   startWindow.close()
 })
 
 ipcMain.on('ipc-study', () => {
-  githubWindow = new electron.BrowserWindow({
-    icon: path.join(__dirname, './src/img/kostImage.ico')
-  })
-  githubWindow.setMenu(null)
-  githubWindow.loadURL('https://github.com/PMHStudio/KoreanScript/tree/prototype#%EC%98%88%EC%A0%9C')
-  githubWindow.on('closed', () => {
-    githubWindow = null
-  })
+  createGithubWindow()
 })
