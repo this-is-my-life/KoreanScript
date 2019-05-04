@@ -1,67 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
+<!doctype html>
+<html lang="ko">
+  <head>
     <title>한글스크립트 편집기 (실험판) Copyright ⓒ 2019. PMH Studio. MIT Licensed.</title>
-    <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script>let $ = require("./jquery-3.3.1.min.js");</script>
-    <script>require("./popper.min.js")</script>
-    <script>require("./bootstrap/js/bootstrap.min.js")</script>
-</head>
-<body>
-    <div class="container" id="in-background">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light row">
-            <div id="in-group-toolbar" class="btn-toolbar col-sm-3">
-                <div class="btn-group" role="group" aria-label="tools">
-                    <button type="button" class="btn btn-primary" id="in-export" data-toggle="tooltip" data-placement="bottom" title="저장하기" onclick="$export()"><i class="fas fa-file-export"></i></button>
-                    <button type="button" class="btn btn-secondary" id="in-import" data-toggle="tooltip" data-placement="bottom" title="불러오기" onclick="$import()"><i class="fas fa-file-import"></i></button>
-                    <button type="button" class="btn btn-danger" id="in-reset" data-toggle="modal" data-target="#in-deleteModal"><i class="fas fa-trash"></i></button>
-                </div>
-            </div>
-            <input type="text" class="form-control col-sm-7" id="in-fileName" placeholder="파일명을 적어주세요">
-            <div id="in-group-toolbar" class="btn-toolbar col-sm-2">
-                <div class="btn-group" role="group" aria-label="tools">
-                    <div class="dropleft">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" id="in-study" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-graduation-cap"></i></button>                   
-                        <div class="dropdown-menu" aria-labelledby="in-study">
-                            <a class="dropdown-item" onclick="example(0)">안녕하세요!</a>
-                            <a class="dropdown-item" onclick="example(1)">비교연산문</a>
-                            <a class="dropdown-item" onclick="example(4)">줄임말</a>
-                            <a class="dropdown-item" onclick="example(2)">변수선언</a>
-                            <a class="dropdown-item" onclick="example(3)">산술연산문</a>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-success" id="in-run" onclick="run()" data-toggle="tooltip" data-placement="bottom" title="실행하기"><i class="fas fa-play"></i></button>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <textarea class="form-control" id="in-scriptTextbox" placeholder="여기를 눌러 한글스크립트 작성을 시작하세요"></textarea>
-    <textarea class="form-control" id="in-debugTextbox" placeholder="연두색 실행버튼을 눌러주세요" disabled></textarea>
-    <!-- Modal -->
-    <div class="modal fade" id="in-deleteModal" tabindex="-1" role="dialog" aria-labelledby="in-deleteModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="in-deleteModalTitle">정말로 모든내용을 지우시겠습니까?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                이 작업을 수행하면, 다시 되돌릴 수 없습니다!<br />
-                계속하시겠습니까?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">아니요</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="reset()">예</button>
-            </div>
-          </div>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
+  </head>
+  <body>
+  <div class="container" id="in-background">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light row">
+      <div id="in-group-toolbar" class="btn-toolbar col-sm-3">
+        <div class="btn-group" role="group" aria-label="tools">
+          <button type="button" class="btn btn-primary" id="in-export" data-toggle="tooltip" data-placement="bottom" title="저장하기" onclick="$export()"><i class="fas fa-file-export"></i></button>
+          <button type="button" class="btn btn-secondary" id="in-import" data-toggle="tooltip" data-placement="bottom" title="불러오기" onclick="$import()"><i class="fas fa-file-import"></i></button>
+          <button type="button" class="btn btn-danger" id="in-reset" onclick="reset()"><i class="fas fa-trash"></i></button>
         </div>
       </div>
-    <script src="main.js"></script>
-</body>
+      <input type="text" class="form-control col-sm-7" id="in-fileName" placeholder="파일명을 적어주세요">
+      <div id="in-group-toolbar" class="btn-toolbar col-sm-2">
+        <div class="btn-group" role="group" aria-label="tools">
+        <button type="button" class="btn btn-secondary" id="in-example" onclick="example()" data-toggle="tooltip" data-placement="bottom" title="연습하기"><i class="fas fa-pencil-alt"></i></button>
+        <button type="button" class="btn btn-success" id="in-run" onclick="run()" data-toggle="tooltip" data-placement="bottom" title="실행하기"><i class="fas fa-play"></i></button>
+       </div>
+      </div>
+    </nav>
+  </div>
+  <textarea class="form-control" id="in-scriptTextbox" placeholder="여기를 눌러 한글스크립트 작성을 시작하세요"></textarea>
+  <textarea class="form-control" id="in-debugTextbox" placeholder="연두색 실행버튼을 눌러주세요" disabled></textarea>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+    <script src="./main.js"></script>
+  </body>
 </html>
